@@ -5,11 +5,12 @@ require "custom_captcha/version"
 Gem::Specification.new do |s|
   s.name        = "custom_captcha"
   s.version     = CustomCaptcha::VERSION
+  s.date        = Date.today
   s.authors     = ["vkill"]
   s.email       = ["vkill.net@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/vkill/custom_captcha"
+  s.summary     = "A simple and custom captcha for Rails3."
+  s.description = "A simple and custom captcha for Rails3."
 
   s.rubyforge_project = "custom_captcha"
 
@@ -18,7 +19,12 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rake"
+  s.add_dependency "activesupport", "~> 3.0.0"
+  s.add_dependency "i18n"
+  s.add_dependency "rmagick", "~> 2.13.1"
+  s.add_dependency "mini_magick", "~> 3.3"
+
 end
+
