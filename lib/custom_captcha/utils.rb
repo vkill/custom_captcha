@@ -5,6 +5,10 @@ module CustomCaptcha
         FileUtils.rm_r Dir[File.join(image_file_dirname(), "**", "*")]
       end
 
+      def generate_image_files(number=1, &block)
+        CustomCaptcha::Image.create(number, &block)
+      end
+
       def generate_image_file_path(text)
         File.join(
           image_file_dirname(),
@@ -21,7 +25,8 @@ module CustomCaptcha
         end
 
         def image_file_basename_prefix
-          ("a".."z").to_a.sort_by!{rand()}.take(6).join()
+#          ("a".."z").to_a.sort_by!{rand()}.take(8).join()
+          SecureRandom.hex(4)
         end
 
         def image_file_basename_suffix(text)

@@ -10,14 +10,14 @@ namespace :custom_captcha do
   task :generate, [:count] do |t, args|
     args.with_defaults(:count => 3)
     count = args[:count].to_i
-    CustomCaptcha::Image.create(count) do |number, n, state, image_file|
-      puts "[%s/%s] %s generating %s" % [ n, number, state, image_file ]
+    CustomCaptcha::Utils.generate_image_files(count) do |number, n, state, image_file|
+      puts "[%s/%s] %s Generating %s" % [ n, number, state.capitalize!, image_file ]
     end
   end
 
   desc "Clear all captcha images."
   task :clear_all do |t|
-    print "\rclearing all captcha images..."
+    print "\rClearing all captcha images..."
     CustomCaptcha::Utils.clear_all_image_files()
     print "done\n"
   end
