@@ -9,7 +9,7 @@ require "mini_magick"
 require "tmpdir"
 require "fileutils"
 require "digest/md5"
-
+require "find"
 
 module CustomCaptcha
   require 'custom_captcha/errors'
@@ -21,27 +21,19 @@ module CustomCaptcha
   class << self
     def configure(&block)
       CustomCaptcha::Configuration.configure(&block)
-      # make and define captcha images path
-      CustomCaptcha::Configuration.make_and_define_images_path()
     end
   end
-
-  # init configuration
-  CustomCaptcha::Configuration.init_config()
-  # make and define captcha images path
-  CustomCaptcha::Configuration.make_and_define_images_path()
 
   if defined?(::Rails)
     if ::Rails.version < "3.0"
       raise RailsVersionError, "mast use rails 3.0+"
     else
-      if ::Rails.version < "3.1"
-        require "custom_captcha/rails/railtie"
-      else
-        require "custom_captcha/rails/engine"
-      end
+      require "custom_captcha/rails_railtie"
     end
-  end
+  end unless File.exist?(File.expand_path('../../config/application.rb', __FILE__))
+
+  # init configuration
+  CustomCaptcha::Configuration.init_config()
 
 end
 

@@ -1,19 +1,18 @@
-class CustomCaptcha::InstallGenerator < Rails::Generators::NamedBase
+require File.expand_path('../../utils', __FILE__)
+
+class CustomCaptcha::InstallGenerator < Rails::Generators::Base
 
   source_root File.expand_path('../templates', __FILE__)
 
-  desc "Creates a CustomCaptcha initializer and copy locale files to your application."
+  include CustomCaptcha::Generators::Utils::InstanceMethods
 
-  def copy_initializer_file
-    copy_file "config/initializers/custom_captcha.rb", "config/initializers/#{file_name}.rb"
-  end
+  desc "Creates CustomCaptcha initializer and copy locale files to your application."
 
-  def copy_locale_file
-    copy_file "../../../config/locales/custom_captcha.en.yml", "config/locales/custom_captcha.en.yml"
-  end
-
-  def run_rake
+  def install
+    template "config/initializers/custom_captcha.rb", "config/initializers/custom_captcha.rb"
+    copy_file "../../../../../config/locales/custom_captcha.en.yml", "config/locales/custom_captcha.en.yml"
     rake("custom_captcha:generate")
+    display "Succeed! custom_captcha has been installed."
   end
 
   def show_readme

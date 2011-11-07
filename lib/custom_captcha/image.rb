@@ -35,6 +35,16 @@ module CustomCaptcha
           text_range.to_a.sort_by!{rand()}.take(text_length).join()
         end
 
+        def generate_image_file_path(text)
+          File.join(
+            CustomCaptcha::Utils.image_file_dirname(),
+            [
+              CustomCaptcha::Utils.image_file_basename(text),
+              CustomCaptcha::Utils.image_file_extname()
+            ].join()
+          )
+        end
+
         def create_image_files(number, options={}, &block)
           columns = CustomCaptcha::Configuration.image_columns
           rows = CustomCaptcha::Configuration.image_rows
@@ -54,7 +64,7 @@ module CustomCaptcha
             text.annotate(canvas, 0,0,0,0, image_text) {
               self.pointsize = @@font_size[image_text.length]
             }
-            image_file = CustomCaptcha::Utils.generate_image_file_path(image_text)
+            image_file = generate_image_file_path(image_text)
             begin
               canvas.write(image_file)
             rescue
@@ -69,6 +79,7 @@ module CustomCaptcha
           end
           image_files
         end
+
       end
   end
 end

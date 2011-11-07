@@ -7,13 +7,18 @@ module CustomCaptcha
                     :text_range,
                     :text_length,
                     :images_path,
-                    :enable
+                    :enable,
+                    :salt
     mattr_reader    :images_path_definite
 
     class << self
 
       def configure
         yield self
+        # make inage files path and defined @@images_path_definite
+        make_and_define_images_path()
+        # reload all image files key
+        CustomCaptcha::Utils.reload_all_image_files_key()
       end
 
       def reset_config
@@ -25,7 +30,11 @@ module CustomCaptcha
           config.text_length    = default_text_length()
           config.images_path    = default_images_path()
           config.enable         = true
+          config.salt           = SecureRandom.hex(10)
         end
+        make_and_define_images_path()
+        # init image files key
+        CustomCaptcha::Utils.init_image_files_key()
       end
       alias_method :init_config, :reset_config
 

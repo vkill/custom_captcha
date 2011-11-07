@@ -7,7 +7,7 @@ require "custom_captcha"
 
 namespace :custom_captcha do
   desc "Generate {count} captcha images."
-  task :generate, [:count] do |t, args|
+  task :generate_images, [:count] do |t, args|
     args.with_defaults(:count => 3)
     count = args[:count].to_i
     CustomCaptcha::Utils.generate_image_files(count) do |number, n, state, image_file|
@@ -16,10 +16,11 @@ namespace :custom_captcha do
   end
 
   desc "Clear all captcha images."
-  task :clear_all do |t|
+  task :clear_all_images do |t|
     print "\rClearing all captcha images..."
     CustomCaptcha::Utils.clear_all_image_files()
     print "done\n"
   end
+
 end
 
