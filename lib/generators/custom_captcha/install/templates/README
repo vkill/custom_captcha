@@ -1,2 +1,18 @@
+===============================================================================
+
+Some setup you must do manually:
+
+  1. Modify captcha images directory in config/initializers/custom_captcha.rb.
+     For example:
+
+       config.images_path = Rails.root.join("public", "captcha_images").to_s
+
+  2. Generate captcha images.
+
+       rake custom_captcha:generate_images[100]
+
+
 Homepage: https://github.com/vkill/custom_captcha
+by: vkill
+===============================================================================
 

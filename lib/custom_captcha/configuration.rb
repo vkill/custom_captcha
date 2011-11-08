@@ -33,8 +33,6 @@ module CustomCaptcha
           config.salt           = SecureRandom.hex(10)
         end
         make_and_define_images_path()
-        # init image files key
-        CustomCaptcha::Utils.init_image_files_key()
       end
       alias_method :init_config, :reset_config
 

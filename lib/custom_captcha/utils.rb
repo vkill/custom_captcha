@@ -16,6 +16,7 @@ module CustomCaptcha
       def reload_all_image_files_key
         @@image_files_key.clear
         reset_image_files_key()
+        @@image_files_key
       end
       alias_method :init_image_files_key, :reload_all_image_files_key
 
@@ -74,7 +75,7 @@ module CustomCaptcha
             while true
               @image_files = Dir[File.join(image_file_dirname(), ["[a-z0-9]*", image_file_extname()].join())]
               break unless @image_files.blank?
-              generate_image_files(3)
+              generate_image_files(1)
               raise InitImageFilesKeyError if n >= 5
               n += 1
             end

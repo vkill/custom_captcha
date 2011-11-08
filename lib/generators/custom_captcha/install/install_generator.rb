@@ -11,7 +11,9 @@ class CustomCaptcha::InstallGenerator < Rails::Generators::Base
   def install
     template "config/initializers/custom_captcha.rb", "config/initializers/custom_captcha.rb"
     copy_file "../../../../../config/locales/custom_captcha.en.yml", "config/locales/custom_captcha.en.yml"
-    rake("custom_captcha:generate")
+    display "test generate and clear images..."
+    rake("custom_captcha:generate_images[1]")
+    rake("custom_captcha:clear_all_images")
     display "Succeed! custom_captcha has been installed."
   end
 
