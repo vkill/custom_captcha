@@ -1,3 +1,6 @@
-<%= text_field_tag 'captcha' %>
-<%= image_tag(show_captcha_image_path(captcha[:image_file_key])) %>
+<%= label_tag captcha[:label_name] %>
+<%= text_field_tag captcha[:input_name] %>
+<%= image_tag(show_captcha_image_path(captcha[:image_file_key]), :id => captcha[:img_tag_id], :alt => captcha[:label_text]) %>
+<%= link_to captcha[:change_text], change_captcha_images_path(:img_tag_id => captcha[:img_tag_id]), :remote => true %>
+<br/>
 

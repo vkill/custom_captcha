@@ -75,7 +75,7 @@ module CustomCaptcha
             while true
               @image_files = Dir[File.join(image_file_dirname(), ["[a-z0-9]*", image_file_extname()].join())]
               break unless @image_files.blank?
-              generate_image_files(1)
+              generate_image_files(3)
               raise InitImageFilesKeyError if n >= 5
               n += 1
             end

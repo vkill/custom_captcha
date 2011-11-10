@@ -28,7 +28,7 @@ class CustomCaptcha::CaptchaImagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @captcha[:image_url] }
       format.js #change.js.erb
-      format.json { render :json => { :image_url => @captcha[:image_url]}}
+      format.json { render :json => {:img_tag_id => @img_tag_id, :image_url => @captcha[:image_url]}}
     end
   end
 
