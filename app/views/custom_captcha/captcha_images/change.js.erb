@@ -1,2 +1,3 @@
-$("img#<%= @img_tag_id %>").attr("src", "<%= @captcha[:image_url] %>")
+$("img#<%= @img_tag_id %>").attr("src", "<%= @img_tag_src %>")
+$("input#<%= @image_file_key_tag_id %>").attr("value", "<%= @image_file_key %>")
 

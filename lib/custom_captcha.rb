@@ -21,6 +21,7 @@ if defined?(::Rails)
     raise RailsVersionError, "mast use rails 3.0+"
   else
     require "custom_captcha/engine"
+    require "custom_captcha/railtie"
   end
 end
 

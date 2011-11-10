@@ -35,7 +35,7 @@ module CustomCaptcha
         image_file_basename[-32..-1]
       end
 
-      def valid_captcha_value(input_value, captcha_digested)
+      def captcha_value_valid?(input_value, captcha_digested)
         image_file_basename_suffix(input_value) == captcha_digested
       end
 
@@ -44,7 +44,7 @@ module CustomCaptcha
     private
       class << self
         def hexdigest_text(text)
-          Digest::MD5.hexdigest([text, CustomCaptcha::Configuration.salt].join())
+          Digest::MD5.hexdigest([text.to_s.downcase, CustomCaptcha::Configuration.salt].join())
         end
 
         def image_file_dirname

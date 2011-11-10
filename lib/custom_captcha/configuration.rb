@@ -36,6 +36,10 @@ module CustomCaptcha
       end
       alias_method :init_config, :reset_config
 
+      def disable?
+        !@@enable
+      end
+
       #image columns setting
       def default_image_columns
         120

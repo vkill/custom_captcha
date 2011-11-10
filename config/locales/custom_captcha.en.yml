@@ -2,6 +2,5 @@ en:
   custom_captcha:
     label: "captcha"
     change: "changing a picture"
-    message:
-      default: "Secret Code did not match with the Image"
+    message: "Secret Code did not match with the Image"
 
