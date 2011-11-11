@@ -16,17 +16,17 @@ require 'custom_captcha/configuration'
 require 'custom_captcha/utils'
 require 'custom_captcha/image'
 
-if defined?(::Rails)
-  if ::Rails.version < "3.0"
-    raise RailsVersionError, "mast use rails 3.0+"
-  else
-    require "custom_captcha/engine"
-    require "custom_captcha/railtie"
-  end
-end
-
+require "custom_captcha/engine"
+require "custom_captcha/railtie"
 
 module CustomCaptcha
+  DEFAULTVALUE = {
+    :field_name => :custom_captcha,
+    :key_name => :custom_captcha_key,
+    :key_id => :custom_captcha_key,
+    :img_id => :custom_captcha_img,
+    :template => 'default'
+  }
   class << self
     def configure(&block)
       CustomCaptcha::Configuration.configure(&block)

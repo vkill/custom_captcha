@@ -15,10 +15,10 @@ namespace :custom_captcha do
     end
   end
 
-  desc "Clear all captcha images."
-  task :clear_all_images => :environment do |t|
-    print "\r           -  Clearing all captcha images..."
-    CustomCaptcha::Utils.clear_all_image_files()
+  desc "Clear captcha images."
+  task :clear_images => :environment do |t|
+    print "\r           -  Clearing captcha images..."
+    CustomCaptcha::Utils.clear_image_files()
     print "done\n"
   end
 

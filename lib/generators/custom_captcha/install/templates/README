@@ -9,7 +9,7 @@ Some setup you must do manually:
 
   2. Generate captcha images.
 
-       rake custom_captcha:generate_images[100]
+       # bundle exec rake custom_captcha:generate_images[100]
 
 
 Homepage: https://github.com/vkill/custom_captcha

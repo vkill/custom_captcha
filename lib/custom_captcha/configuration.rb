@@ -18,7 +18,7 @@ module CustomCaptcha
         # make inage files path and defined @@images_path_definite
         make_and_define_images_path()
         # reload all image files key
-        CustomCaptcha::Utils.reload_all_image_files_key()
+        CustomCaptcha::Utils.reload_image_files_paths()
       end
 
       def reset_config

@@ -10,27 +10,18 @@ module CustomCaptcha
       module InstanceMethods
         def display_custom_captcha(options={})
           return "" if CustomCaptcha::Configuration.disable?
-          if options[:object_name]
-            options[:custom_captcha_name] ||= object_field_tag_name options[:object_name], 'custom_captcha'
-            options[:custom_captcha_image_file_key_name] =
-                      object_field_tag_name options[:object_name], 'custom_captcha_image_file_key'
-            options[:custom_captcha_image_file_key_id] ||=
-                      object_field_tag_id options[:object_name], 'custom_captcha_image_file_key'
-            options[:img_tag_id] ||= object_field_tag_id options[:object_name], 'custom_captcha_img_tag'
-          else
-            options[:custom_captcha_name] ||= 'custom_captcha'
-            options[:custom_captcha_image_file_key_name] = 'custom_captcha_image_file_key'
-            options[:custom_captcha_image_file_key_id] ||= 'custom_captcha_image_file_key'
-            options[:img_tag_id] ||= 'custom_captcha_img_tag'
-            options[:custom_captcha_image_file_key] = CustomCaptcha::Utils.choice_image_file_key_by_rand()
-          end
-          set_captcha_session CustomCaptcha::Utils.generate_captcha_digested(options[:custom_captcha_image_file_key])
-          options[:img_tag_src] = show_captcha_image_path(options[:custom_captcha_image_file_key])
-          options[:template] ||= 'default'
-          options[:label_name] ||= I18n.t('custom_captcha.label')
+          options[:key] = choice_image_file_path_and_write_session_cache
+
+          options[:field_name] ||= CustomCaptcha::DEFAULTVALUE[:field_name]
+          options[:key_name] ||= CustomCaptcha::DEFAULTVALUE[:key_name]
+          options[:key_id] ||= CustomCaptcha::DEFAULTVALUE[:key_id]
+          options[:img_id] ||= CustomCaptcha::DEFAULTVALUE[:img_id]
+
+          options[:img_src] = show_captcha_image_path(options[:key])
+          options[:template] ||= CustomCaptcha::DEFAULTVALUE[:template]
+          options[:label_text] ||= I18n.t('custom_captcha.label')
           options[:change_text] ||= I18n.t('custom_captcha.change')
-          options[:change_url] = change_captcha_images_path(:img_tag_id => options[:img_tag_id],
-                                              :image_file_key_tag_id => options[:custom_captcha_image_file_key_id])
+          options[:change_url] = change_captcha_images_path(:img_id => options[:img_id], :key_id => options[:key_id])
           render "custom_captcha/captcha_styles/#{options[:template]}", :captcha => options
         end
       end
@@ -46,9 +37,15 @@ module CustomCaptcha
         end
         module InstanceMethods
           def custom_captcha(options={})
-            return "" unless (@object.custom_captcha_image_file_key rescue nil)
+            return "" unless (@object.custom_captcha_key rescue nil)
             options[:object_name] = @object_name.to_s
-            options[:custom_captcha_image_file_key] = @object.custom_captcha_image_file_key
+            options[:key] = @object.custom_captcha_key
+
+            options[:field_name] = object_field_name options[:object_name], CustomCaptcha::DEFAULTVALUE[:field_name]
+            options[:key_name] = object_field_name options[:object_name], CustomCaptcha::DEFAULTVALUE[:key_name]
+            options[:key_id] = object_field_id options[:object_name], CustomCaptcha::DEFAULTVALUE[:key_id]
+            options[:img_id] = object_field_id options[:object_name], CustomCaptcha::DEFAULTVALUE[:img_id]
+
             @template.display_custom_captcha(options)
           end
         end
