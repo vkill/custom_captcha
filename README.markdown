@@ -36,31 +36,31 @@ Then run:
 
 In the view file within the form tags add this code
 
-  <%= display_custom_captcha %>
+    <%= display_custom_captcha %>
 
 and in the controller's action authenticate it as
 
-  if custom_captcha_valid?(params[:custom_captcha])
-    flash[:notice] = "captcha did match."
-  else
-    flash[:notice] = "captcha did not match."
-  end
+    if custom_captcha_valid?(params[:custom_captcha])
+      flash[:notice] = "captcha did match."
+    else
+      flash[:notice] = "captcha did not match."
+    end
 
 ###FormBuilder helper
 
 In the model class add this code
 
-  class User < ActiveRecord::Basse
-    apply_custom_captcha
-  end
+    class User < ActiveRecord::Basse
+      apply_custom_captcha
+    end
 
 and in the view file within the form tags write this code
 
-  <%= form_for @user do |form| -%>
-    ...
-    <%= form.custom_captcha %>
-    ...
-  <% end -%>
+    <%= form_for @user do |form| -%>
+      ...
+      <%= form.custom_captcha %>
+      ...
+    <% end -%>
 
 
 ##Usage your custom captcha area template
@@ -72,7 +72,7 @@ first, copy and modify your custom captcha area template
 
 and then in the view file your the use of
 
-  <%= display_custom_captcha(:template => :mycaptcha) %>
+    <%= display_custom_captcha(:template => :mycaptcha) %>
 
 
 ##Options & Examples
@@ -95,10 +95,11 @@ and then in the view file your the use of
 
 ###Examples
 
-  <%= display_custom_captcha(:img_id => :captcha, :label_text => "captcha", :field_name => :captcha %>
+    <%= display_custom_captcha(:img_id => :captcha, :label_text => "captcha", :field_name => :captcha %>
 
 
 ##I18n supported
+
 
 
 ##Copyright
