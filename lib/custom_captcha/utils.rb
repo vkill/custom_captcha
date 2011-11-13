@@ -70,7 +70,7 @@ module CustomCaptcha
               @@image_files_paths = Dir[File.join(image_file_dirname(), ["[a-z0-9]*", image_file_extname()].join())]
               break unless self.image_files_paths.blank?
               generate_image_files(3)
-              raise InitImageFilesKeyError if n >= 5
+              raise InitImageFilesKeyError if n >= 3
               n += 1
             end
             @@image_files_paths.sort_by!{rand()}

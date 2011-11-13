@@ -22,7 +22,7 @@ module CustomCaptcha
           options[:label_text] ||= I18n.t('custom_captcha.label')
           options[:change_text] ||= I18n.t('custom_captcha.change')
           options[:change_url] = change_captcha_images_path(:img_id => options[:img_id], :key_id => options[:key_id])
-          render "custom_captcha/captcha_styles/#{options[:template]}", :captcha => options
+          render "custom_captcha/captcha_styles/#{options[:template].to_s}", :captcha => options
         end
       end
     end
