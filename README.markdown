@@ -1,7 +1,7 @@
 #CustomCaptcha
 
 CustomCaptcha is a simple and custom captcha plugin for Rails3.
-
+* https://github.com/vkill/custom_captcha
 
 ##Supported versions
 
