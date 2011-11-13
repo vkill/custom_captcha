@@ -16,6 +16,7 @@ require 'custom_captcha/configuration'
 require 'custom_captcha/utils'
 require 'custom_captcha/image'
 
+require "rails"
 require "custom_captcha/engine"
 require "custom_captcha/railtie"
 
