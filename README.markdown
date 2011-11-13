@@ -1,4 +1,4 @@
-== CustomCaptcha
+= CustomCaptcha
 
 CustomCaptcha is a simple and custom captcha plugin for Rails3.
 
