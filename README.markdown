@@ -1,9 +1,9 @@
-= CustomCaptcha
+=CustomCaptcha
 
 CustomCaptcha is a simple and custom captcha plugin for Rails3.
 
 
-== Supported versions
+==Supported versions
 
 * Ruby 1.8.7, 1.9.2, 1.9.3
 
@@ -12,11 +12,11 @@ CustomCaptcha is a simple and custom captcha plugin for Rails3.
 * ImageMagick should be installed on your machine to use this plugin.
 
 
-== Installation
+==Installation
 
 In your app's `Gemfile`, add:
 
-    gem "custom_captcha", :git => "git://github.com/vkill/custom_captcha.git"
+    gem "custom_captcha", "~> 0.1.0"
 
 Then run:
 
@@ -30,9 +30,9 @@ Then run:
     bundle exec rake custom_captcha:generate_images[100]
 
 
-== Base Usage
+==Base Usage
 
-=== View helper
+===View helper
 
 In the view file within the form tags add this code
 
@@ -46,7 +46,7 @@ and in the controller's action authenticate it as
     flash[:notice] = "captcha did not match."
   end
 
-=== FormBuilder helper
+===FormBuilder helper
 
 In the model class add this code
 
@@ -63,7 +63,7 @@ and in the view file within the form tags write this code
   <% end -%>
 
 
-== Usage your custom captcha area template
+==Usage your custom captcha area template
 
 first, copy and modify your custom captcha area template
 
@@ -75,9 +75,9 @@ and then in the view file your the use of
   <%= display_custom_captcha(:template => :mycaptcha) %>
 
 
-== Options & Examples
+==Options & Examples
 
-=== Helper Options, View helper and FormBuilder helper
+===Helper Options, View helper and FormBuilder helper
 
 * *template* - use your custom template
 
@@ -93,15 +93,15 @@ and then in the view file your the use of
 
 * *change_text* - custom change text
 
-=== Examples
+===Examples
 
   <%= display_custom_captcha(:img_id => :captcha, :label_text => "captcha", :field_name => :captcha %>
 
 
-== I18n supported
+==I18n supported
 
 
-== Copyright
+==Copyright
 
 Copyright (c) 2011 vkill.net .
 
