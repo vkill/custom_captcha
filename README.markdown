@@ -12,7 +12,6 @@ CustomCaptcha is a simple and custom captcha plugin for Rails3.
 * ImageMagick should be installed on your machine to use this plugin.
 
 
-***
 ##Installation
 
 In your app's `Gemfile`, add:
@@ -31,7 +30,6 @@ Then run:
     bundle exec rake custom_captcha:generate_images[100]
 
 
-***
 ##Base Usage
 
 ###View helper
@@ -102,7 +100,7 @@ and then in the view file your the use of
 
 ##I18n supported
 
-***
+
 ##Copyright
 
 Copyright (c) 2011 vkill.net .
