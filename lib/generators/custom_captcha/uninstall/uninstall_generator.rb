@@ -25,9 +25,7 @@ class CustomCaptcha::UninstallGenerator < Rails::Generators::Base
 #    Dir[filename_pattern].each do |f|
 #      copy_file f, "app/views/custom_captcha/captcha_styles/#{File.basename f}"
 #    end
-    Dir["app/views/custom_captcha/captcha_styles/*"].each do |f|
-      remove_file f
-    end
+    remove_file "app/views/custom_captcha/captcha_styles"
   end
 
   def show_readme

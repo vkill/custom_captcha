@@ -1,8 +1,6 @@
 Description:
-    Explain the generator
+    Copy CustomCaptcha files to your application.
 
 Example:
-    rails generate install Thing
+    rails generate custom_captcha:install
 
-    This will create:
-        what/will/it/create

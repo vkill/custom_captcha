@@ -1,8 +1,6 @@
 Description:
-    Explain the generator
+    Remove CustomCaptcha files to your application.
 
 Example:
-    rails generate uninstall Thing
+    rails generate custom_captcha:uninstall
 
-    This will create:
-        what/will/it/create
